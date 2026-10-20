@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block title %}
+PeakDemand | Upload Dataset
+{% endblock %}
+
+
+{% block content %}
+
+<div class="page-header">
+
+    <div>
+
+        <span class="eyebrow">
+            DATA COLLECTION
+        </span>
+
+        <h1>
+            Upload Historical Dataset
+        </h1>
+
+        <p>
+            Upload your CSV and PeakDemand will clean,
+            extract features, store the data and train
+            the machine-learning model.
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="upload-layout">
+
+    <div class="upload-card">
+
+        <div class="upload-icon">
+            📂
+        </div>
+
+        <h2>
+            Upload CSV File
+        </h2>
+
+        <p>
+            Supported format: CSV
+        </p>
+
+
+        <form
+            method="POST"
+            enctype="multipart/form-data"
+        >
+
+            <div class="file-box">
+
+                <input
+                    type="file"
+                    name="csv_file"
+                    accept=".csv"
+                    required
+                >
+
+                <span>
+                    Choose CSV file
+                </span>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="btn btn-primary full-btn"
+            >
+                Upload & Train Model
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <div class="info-card">
+
+        <h3>
+            Required Dataset Information
+        </h3>
+
+        <div class="dataset-field">
+            <strong>Date_Time</strong>
+            <span>Date and time of demand record</span>
+        </div>
+
+        <div class="dataset-field">
+            <strong>Hour</strong>
+            <span>Hourly usage pattern</span>
+        </div>
+
+        <div class="dataset-field">
+            <strong>Day</strong>
+            <span>Day of week</span>
+        </div>
+
+        <div class="dataset-field">
+            <strong>Month</strong>
+            <span>Monthly pattern</span>
+        </div>
+
+        <div class="dataset-field">
+            <strong>Season</strong>
+            <span>Winter / Summer / Monsoon / Autumn</span>
+        </div>
+
+        <div class="dataset-field">
+            <strong>Holiday</strong>
+            <span>0 = normal day, 1 = holiday</span>
+        </div>
+
+        <div class="dataset-field">
+            <strong>Temperature</strong>
+            <span>Temperature value</span>
+        </div>
+
+        <div class="dataset-field">
+            <strong>Demand_MW</strong>
+            <span>Electricity demand target</span>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

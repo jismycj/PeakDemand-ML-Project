@@ -1,0 +1,186 @@
+{% extends "base.html" %}
+
+{% block title %}
+PeakDemand | Home
+{% endblock %}
+
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-badge">
+            ⚡ MACHINE LEARNING ENERGY ANALYTICS
+        </div>
+
+        <h1>
+            Predict Electricity
+            <span>Peak Demand</span>
+            Before It Happens
+        </h1>
+
+        <p>
+            PeakDemand uses historical electricity demand,
+            time, season, holiday and temperature information
+            to predict hourly electricity demand and identify
+            the expected peak period.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a
+                href="{{ url_for('register') }}"
+                class="btn btn-primary"
+            >
+                Get Started
+            </a>
+
+            <a
+                href="{{ url_for('login') }}"
+                class="btn btn-outline"
+            >
+                Login
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-card">
+
+        <div class="hero-logo">
+            ⚡
+        </div>
+
+        <h2>
+            PeakDemand
+        </h2>
+
+        <p>
+            Smart electricity demand prediction
+        </p>
+
+        <div class="mini-stats">
+
+            <div>
+                <strong>24</strong>
+                <span>Hours</span>
+            </div>
+
+            <div>
+                <strong>ML</strong>
+                <span>Model</span>
+            </div>
+
+            <div>
+                <strong>∞</strong>
+                <span>Analysis</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="features-section">
+
+    <div class="section-heading">
+
+        <span>
+            SYSTEM FEATURES
+        </span>
+
+        <h2>
+            Everything required for
+            demand prediction
+        </h2>
+
+    </div>
+
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                📂
+            </div>
+
+            <h3>
+                CSV Data Upload
+            </h3>
+
+            <p>
+                Upload historical electricity demand
+                data and automatically extract the
+                required features.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🧠
+            </div>
+
+            <h3>
+                Machine Learning
+            </h3>
+
+            <p>
+                Train a Random Forest regression model
+                using time, season, holiday and
+                temperature information.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                📈
+            </div>
+
+            <h3>
+                24-Hour Prediction
+            </h3>
+
+            <p>
+                Generate hourly electricity demand
+                predictions and automatically identify
+                the peak period.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                💡
+            </div>
+
+            <h3>
+                Smart Suggestions
+            </h3>
+
+            <p>
+                Receive demand-level based suggestions
+                for managing high electricity usage.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

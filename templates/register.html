@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+
+{% block title %}
+PeakDemand | Register
+{% endblock %}
+
+
+{% block content %}
+
+<div class="auth-page">
+
+    <div class="auth-card">
+
+        <div class="auth-logo">
+            ⚡
+        </div>
+
+        <h1>
+            Create Account
+        </h1>
+
+        <p class="auth-subtitle">
+            Join PeakDemand and start analysing electricity demand.
+        </p>
+
+
+        <form
+            method="POST"
+            action="{{ url_for('register') }}"
+        >
+
+            <label>
+                Full Name
+            </label>
+
+            <input
+                type="text"
+                name="name"
+                placeholder="Enter your name"
+                required
+            >
+
+
+            <label>
+                Email
+            </label>
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+            >
+
+
+            <label>
+                Password
+            </label>
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Minimum 6 characters"
+                required
+            >
+
+
+            <label>
+                Account Type
+            </label>
+
+            <select
+                name="role"
+                id="role"
+                onchange="toggleAdminKey()"
+            >
+
+                <option value="user">
+                    User
+                </option>
+
+                <option value="admin">
+                    Admin
+                </option>
+
+            </select>
+
+
+            <div
+                id="adminKeyBox"
+                style="display:none;"
+            >
+
+                <label>
+                    Admin Registration Key
+                </label>
+
+                <input
+                    type="password"
+                    name="admin_key"
+                    placeholder="Enter admin key"
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="btn btn-primary full-btn"
+            >
+                Create Account
+            </button>
+
+        </form>
+
+
+        <p class="auth-footer">
+
+            Already have an account?
+
+            <a href="{{ url_for('login') }}">
+                Login
+            </a>
+
+        </p>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function toggleAdminKey() {
+
+    const role =
+        document.getElementById("role").value;
+
+    const box =
+        document.getElementById("adminKeyBox");
+
+    if (role === "admin") {
+
+        box.style.display = "block";
+
+    } else {
+
+        box.style.display = "none";
+
+    }
+}
+
+</script>
+
+{% endblock %}

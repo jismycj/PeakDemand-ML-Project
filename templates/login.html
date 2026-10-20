@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %}
+PeakDemand | Login
+{% endblock %}
+
+
+{% block content %}
+
+<div class="auth-page">
+
+    <div class="auth-card">
+
+        <div class="auth-logo">
+            ⚡
+        </div>
+
+        <h1>
+            Welcome Back
+        </h1>
+
+        <p class="auth-subtitle">
+            Login to your PeakDemand account.
+        </p>
+
+
+        <form
+            method="POST"
+            action="{{ url_for('login') }}"
+        >
+
+            <label>
+                Email
+            </label>
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+            >
+
+
+            <label>
+                Password
+            </label>
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+                required
+            >
+
+
+            <label>
+                Login As
+            </label>
+
+            <div class="role-selector">
+
+                <label class="role-option">
+
+                    <input
+                        type="radio"
+                        name="role"
+                        value="user"
+                        checked
+                    >
+
+                    <span>
+                        👤 User
+                    </span>
+
+                </label>
+
+
+                <label class="role-option">
+
+                    <input
+                        type="radio"
+                        name="role"
+                        value="admin"
+                    >
+
+                    <span>
+                        🛡️ Admin
+                    </span>
+
+                </label>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="btn btn-primary full-btn"
+            >
+                Login
+            </button>
+
+        </form>
+
+
+        <p class="auth-footer">
+
+            Don't have an account?
+
+            <a href="{{ url_for('register') }}">
+                Register
+            </a>
+
+        </p>
+
+    </div>
+
+</div>
+
+{% endblock %}

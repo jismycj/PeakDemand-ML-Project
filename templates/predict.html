@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+
+{% block title %}
+PeakDemand | Prediction
+{% endblock %}
+
+
+{% block content %}
+
+<div class="page-header">
+
+    <div>
+
+        <span class="eyebrow">
+            MACHINE LEARNING
+        </span>
+
+        <h1>
+            Predict Peak Electricity Demand
+        </h1>
+
+        <p>
+            Enter the prediction conditions.
+            PeakDemand will generate demand predictions
+            for all 24 hours.
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="prediction-layout">
+
+    <div class="prediction-card">
+
+        <div class="prediction-card-header">
+
+            <div class="prediction-icon">
+                🧠
+            </div>
+
+            <div>
+
+                <h2>
+                    Prediction Inputs
+                </h2>
+
+                <p>
+                    Provide the conditions for the prediction date.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <form
+            method="POST"
+            action="{{ url_for('predict') }}"
+        >
+
+            <label>
+                Prediction Date
+            </label>
+
+            <input
+                type="date"
+                name="prediction_date"
+                required
+            >
+
+
+            <label>
+                Temperature (°C)
+            </label>
+
+            <input
+                type="number"
+                name="temperature"
+                step="0.1"
+                placeholder="Example: 29.5"
+                required
+            >
+
+
+            <label>
+                Holiday
+            </label>
+
+            <select
+                name="holiday"
+                required
+            >
+
+                <option value="0">
+                    No - Normal Day
+                </option>
+
+                <option value="1">
+                    Yes - Holiday
+                </option>
+
+            </select>
+
+
+            <button
+                type="submit"
+                class="btn btn-primary full-btn"
+            >
+                Generate 24-Hour Prediction
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <div class="process-card">
+
+        <h2>
+            Prediction Process
+        </h2>
+
+        <div class="process-step">
+
+            <span>01</span>
+
+            <div>
+                <strong>
+                    Feature Extraction
+                </strong>
+
+                <p>
+                    Hour, day, month and season are extracted.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="process-step">
+
+            <span>02</span>
+
+            <div>
+                <strong>
+                    ML Prediction
+                </strong>
+
+                <p>
+                    Random Forest predicts demand for every hour.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="process-step">
+
+            <span>03</span>
+
+            <div>
+                <strong>
+                    Peak Identification
+                </strong>
+
+                <p>
+                    Highest predicted demand determines the peak.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="process-step">
+
+            <span>04</span>
+
+            <div>
+                <strong>
+                    Suggestion
+                </strong>
+
+                <p>
+                    Demand level rules generate the recommendation.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

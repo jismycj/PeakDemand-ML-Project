@@ -1,0 +1,444 @@
+{% extends "base.html" %}
+
+{% block title %}
+PeakDemand | Admin Dashboard
+{% endblock %}
+
+
+{% block content %}
+
+<div class="dashboard-header">
+
+    <div>
+
+        <span class="eyebrow">
+            ADMIN PANEL
+        </span>
+
+        <h1>
+            System Administration
+        </h1>
+
+        <p>
+            Monitor users, datasets, model training and predictions.
+        </p>
+
+    </div>
+
+
+    <div class="admin-badge">
+        🛡️ ADMIN
+    </div>
+
+</div>
+
+
+<div class="stat-grid">
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            👥
+        </div>
+
+        <div>
+
+            <span>
+                Registered Users
+            </span>
+
+            <strong>
+                {{ users|length }}
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            📂
+        </div>
+
+        <div>
+
+            <span>
+                Datasets
+            </span>
+
+            <strong>
+                {{ datasets|length }}
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            🧠
+        </div>
+
+        <div>
+
+            <span>
+                Model Runs
+            </span>
+
+            <strong>
+                {{ model_runs|length }}
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            🔮
+        </div>
+
+        <div>
+
+            <span>
+                Predictions
+            </span>
+
+            <strong>
+                {{ predictions|length }}
+            </strong>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<section class="admin-section">
+
+    <div class="section-heading dashboard-section-heading">
+
+        <span>
+            USERS
+        </span>
+
+        <h2>
+            Registered Accounts
+        </h2>
+
+    </div>
+
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        ID
+                    </th>
+
+                    <th>
+                        Name
+                    </th>
+
+                    <th>
+                        Email
+                    </th>
+
+                    <th>
+                        Role
+                    </th>
+
+                    <th>
+                        Created
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for user in users %}
+
+                <tr>
+
+                    <td>
+                        #{{ user.id }}
+                    </td>
+
+                    <td>
+                        {{ user.name }}
+                    </td>
+
+                    <td>
+                        {{ user.email }}
+                    </td>
+
+                    <td>
+
+                        <span class="role-badge">
+                            {{ user.role|upper }}
+                        </span>
+
+                    </td>
+
+                    <td>
+                        {{ user.created_at }}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<section class="admin-section">
+
+    <div class="section-heading dashboard-section-heading">
+
+        <span>
+            MODEL PERFORMANCE
+        </span>
+
+        <h2>
+            Training Results
+        </h2>
+
+    </div>
+
+
+    <div class="metrics-grid">
+
+        {% for run in model_runs %}
+
+        <div class="metric-card">
+
+            <div class="metric-title">
+                Model Run #{{ run.id }}
+            </div>
+
+            <div class="metric-row">
+
+                <span>
+                    Records
+                </span>
+
+                <strong>
+                    {{ run.records }}
+                </strong>
+
+            </div>
+
+            <div class="metric-row">
+
+                <span>
+                    Training
+                </span>
+
+                <strong>
+                    {{ run.training_records }}
+                </strong>
+
+            </div>
+
+            <div class="metric-row">
+
+                <span>
+                    Testing
+                </span>
+
+                <strong>
+                    {{ run.testing_records }}
+                </strong>
+
+            </div>
+
+            <div class="metric-row">
+
+                <span>
+                    MAE
+                </span>
+
+                <strong>
+                    {{ "%.4f"|format(run.mae) }}
+                </strong>
+
+            </div>
+
+            <div class="metric-row">
+
+                <span>
+                    RMSE
+                </span>
+
+                <strong>
+                    {{ "%.4f"|format(run.rmse) }}
+                </strong>
+
+            </div>
+
+            <div class="metric-row">
+
+                <span>
+                    R²
+                </span>
+
+                <strong>
+                    {{ "%.4f"|format(run.r2) }}
+                </strong>
+
+            </div>
+
+        </div>
+
+        {% else %}
+
+        <div class="empty-state">
+
+            <h3>
+                No model training results yet.
+            </h3>
+
+            <p>
+                Upload a dataset to train the model.
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+<section class="admin-section">
+
+    <div class="section-heading dashboard-section-heading">
+
+        <span>
+            PREDICTIONS
+        </span>
+
+        <h2>
+            Recent Prediction Activity
+        </h2>
+
+    </div>
+
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        User
+                    </th>
+
+                    <th>
+                        Date
+                    </th>
+
+                    <th>
+                        Peak Time
+                    </th>
+
+                    <th>
+                        Peak Demand
+                    </th>
+
+                    <th>
+                        Level
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for prediction in predictions %}
+
+                <tr>
+
+                    <td>
+                        User #{{ prediction.user_id }}
+                    </td>
+
+                    <td>
+                        {{ prediction.prediction_date }}
+                    </td>
+
+                    <td>
+                        {{ prediction.peak_time }}
+                    </td>
+
+                    <td>
+                        {{ "%.2f"|format(
+                            prediction.peak_demand
+                        ) }}
+                        MW
+                    </td>
+
+                    <td>
+
+                        <span
+                            class="level-badge
+                            level-{{ prediction.demand_level|lower }}"
+                        >
+                            {{ prediction.demand_level }}
+                        </span>
+
+                    </td>
+
+                </tr>
+
+                {% else %}
+
+                <tr>
+
+                    <td
+                        colspan="5"
+                        class="no-data"
+                    >
+                        No predictions available.
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+{% endblock %}
